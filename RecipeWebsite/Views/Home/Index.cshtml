@@ -1,8 +1,118 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>       
+    
+<body>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    @*Carousel settings*@
+    <style>
+
+        .carousel-item {
+            height: 25rem;
+            background: #000;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .overlay-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.5
+        }
+    </style>
+
+
+    @*Carousel*@
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        @*Bottom Sliders*@        
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>        
+
+        <div class="carousel-inner">
+
+            @*First slide*@
+            <div class="carousel-item active" data-interval="8000">
+
+                <div class="container">
+
+                    <h1>First Slide</h1>
+
+                    <p>
+                    Some representative placeholder content for the first slide of the carousel.
+                    </p>
+
+                    <a href="#" class="btn btn-lg btn-primary">
+                        This is first format
+                    </a>
+
+                </div>
+            </div>
+
+            @*Second slide*@
+            <div class="carousel-item" data-interval="8000">
+                <div class="container">
+
+                    <h1>Second Slide</h1>
+
+                    <p>
+                        Some representative placeholder content for the first slide of the carousel.
+                    </p>
+
+                    <a href="#" class="btn btn-lg btn-primary">
+                        This is second format
+                    </a>
+
+                </div>
+            </div>
+
+            @*Third slide*@
+            <div class="carousel-item" data-interval="8000">
+                <div class="container">
+
+                    <h1>Third Slide</h1>
+
+                    <p>
+                        Some representative placeholder content for the first slide of the carousel.
+                    </p>
+
+                    <a href="#" class="btn btn-lg btn-primary">
+                        This is third format
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        @*Previous arrow*@
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        @*Next arrow*@
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+
+</body>
