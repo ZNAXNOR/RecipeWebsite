@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RecipeWebsite.Data.Enum;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeWebsite.Models
 {
@@ -9,5 +11,11 @@ namespace RecipeWebsite.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+
+        public PostCategory PostCategory { get; set; }
+
+        [ForeignKey("AppUser")]
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
     }
 }

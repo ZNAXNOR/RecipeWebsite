@@ -21,6 +21,19 @@ namespace RecipeWebsite.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("RecipeWebsite.Models.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUser");
+                });
+
             modelBuilder.Entity("RecipeWebsite.Models.Collection", b =>
                 {
                     b.Property<int>("Id")
@@ -28,6 +41,12 @@ namespace RecipeWebsite.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CollectionCategory")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -42,6 +61,8 @@ namespace RecipeWebsite.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Collections");
                 });
@@ -54,6 +75,9 @@ namespace RecipeWebsite.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -62,13 +86,43 @@ namespace RecipeWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PostCategory")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("RecipeWebsite.Models.Collection", b =>
+                {
+                    b.HasOne("RecipeWebsite.Models.AppUser", "AppUser")
+                        .WithMany("Collections")
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("RecipeWebsite.Models.Post", b =>
+                {
+                    b.HasOne("RecipeWebsite.Models.AppUser", "AppUser")
+                        .WithMany("Posts")
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("RecipeWebsite.Models.AppUser", b =>
+                {
+                    b.Navigation("Collections");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
