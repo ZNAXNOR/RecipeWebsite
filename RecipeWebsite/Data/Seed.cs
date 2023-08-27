@@ -65,7 +65,7 @@ namespace RecipeWebsite.Data
                     {
                         new Post()
                         {
-                            Title = "Post 1",
+                            Title = "Recipe Post 1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first Recipe",
                             PostCategory = PostCategory.Veg
@@ -73,7 +73,7 @@ namespace RecipeWebsite.Data
 
                         new Post()
                         {
-                            Title = "Post 2",
+                            Title = "Recipe Post 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the second Recipe",
                             PostCategory = PostCategory.NonVeg                            
