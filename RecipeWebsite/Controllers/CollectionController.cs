@@ -18,5 +18,11 @@ namespace RecipeWebsite.Controllers
             List<Collection> collections = _context.Collections.ToList();
             return View(collections);
         }
+
+        public IActionResult Detail(int id)
+        {
+            Collection collection = _context.Collections.FirstOrDefault(c => c.Id == id);
+            return View(collection);
+        }
     }
 }

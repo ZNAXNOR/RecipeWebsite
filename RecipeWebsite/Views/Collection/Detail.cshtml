@@ -1,0 +1,43 @@
+﻿@model Collection
+
+<!-- Page Content -->
+
+<div class="container">
+
+    <!-- Item Heading -->
+    <h1 class="my-4">
+        @Model.Title
+    </h1>
+
+    <!-- Item Description -->
+    <div class="row">
+      <div class="col-md-8">
+        <img class="img-fluid" src="@Model.Image" alt="">
+      </div>
+
+      <div class="col-md-4">
+        <h3 class="my-3">@Model.Title</h3>
+        <p>@Model.Description</p>
+
+        <h3 class="my-3">Recipe Category</h3>
+        <ul>
+            <li>Category 1</li>
+            <li>Category 2</li>
+            <li>Category 3</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Item Ingredients -->
+    <h3 class="my-4">Ingredients</h3>
+    <ul>
+        <li>Ingredients 1</li>
+        <li>Ingredients 2</li>
+        <li>Ingredients 3</li>
+    </ul>
+
+    <!-- Item Description -->
+    <h3 class="my-4">Recipe</h3>
+    <p>Recipe Description</p>
+
+</div>

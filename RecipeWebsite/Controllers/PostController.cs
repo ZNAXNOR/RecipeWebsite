@@ -18,5 +18,11 @@ namespace RecipeWebsite.Controllers
             List<Post> posts = _context.Posts.ToList();
             return View(posts);
         }
+
+        public IActionResult Detail(int id)
+        {
+            Post post = _context.Posts.FirstOrDefault(c => c.Id == id);
+            return View(post);
+        }
     }
 }
