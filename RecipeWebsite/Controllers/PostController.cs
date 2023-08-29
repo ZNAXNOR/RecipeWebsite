@@ -1,27 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RecipeWebsite.Data;
+using RecipeWebsite.Interface;
 using RecipeWebsite.Models;
 
 namespace RecipeWebsite.Controllers
 {
     public class PostController : Controller
-    {
-        private readonly ApplicationDbContext _context;
+    {        
+        private readonly IPostInterface _postInterface;
 
-        public PostController(ApplicationDbContext context)
-        {
-            _context = context;
+        public PostController(IPostInterface postInterface)
+        {            
+            _postInterface = postInterface;
         }
 
-        public IActionResult Index()
-        {
-            List<Post> posts = _context.Posts.ToList();
+        public async Task<IActionResult> IndexAsync()
+        {            
+            IEnumerable<Post> posts = await _postInterface.GetAll();
             return View(posts);
         }
 
-        public IActionResult Detail(int id)
-        {
-            Post post = _context.Posts.FirstOrDefault(c => c.Id == id);
+        public async Task<IActionResult> DetailAsync(int id)
+        {            
+            Post post = await _postInterface.GetByIdAsync(id);
             return View(post);
         }
     }

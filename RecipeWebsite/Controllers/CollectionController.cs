@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RecipeWebsite.Data;
+using RecipeWebsite.Interface;
 using RecipeWebsite.Models;
 
 namespace RecipeWebsite.Controllers
 {
     public class CollectionController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICollectionInterface _collectionInterface;
 
-        public CollectionController(ApplicationDbContext context)
+        public CollectionController(ICollectionInterface collectionInterface)
         {
-            _context = context;
+            _collectionInterface = collectionInterface;
         }
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            List<Collection> collections = _context.Collections.ToList();
+            IEnumerable<Collection> collections = await _collectionInterface.GetAll();
             return View(collections);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            Collection collection = _context.Collections.FirstOrDefault(c => c.Id == id);
+            Collection collection = await _collectionInterface.GetByIdAsync(id);
             return View(collection);
         }
     }

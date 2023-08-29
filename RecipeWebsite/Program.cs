@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using RecipeWebsite.Data;
+using RecipeWebsite.Interface;
+using RecipeWebsite.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICollectionInterface, CollectionRepository>();
+builder.Services.AddScoped<IPostInterface, PostRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
