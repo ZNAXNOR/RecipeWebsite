@@ -1,0 +1,55 @@
+﻿@using RecipeWebsite.Data.Enum;
+@model Post
+
+<form method="post" asp-action="Create">
+
+    <div class="container">
+
+        @*Title*@
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" placeholder="post title">
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        @*Description*@
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input asp-for="Description" class="form-control" placeholder="post description">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        @*PostCategory*@
+        <div class="mb-3">
+            <label asp-for="PostCategory" class="form-label">Post Category</label>
+            <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control">
+                <option value="">Choose a category...</option>
+            </select>
+            <span asp-validation-for="PostCategory" class="text-danger"></span>
+        </div>
+
+        @*Ingredients*@
+
+
+        @*Recipe*@
+        <div class="mb-3">
+            <label asp-for="Recipe" class="form-label">Recipe</label>
+            <textarea asp-for="Recipe" class="form-control" id="Recipe" placeholder="recipe goes here" rows="5"></textarea>
+            <span asp-validation-for="Recipe" class="text-danger"></span>
+        </div>
+
+        @*Image*@
+        <div class="mb-3">
+            @*<label asp-for="Image" class="form-label">Thumbnail</label>
+            <input class="form-control" type="file" id="formFile">*@
+            <label asp-for="Image" class="form-label">Thumbnail</label>
+            <input asp-for="Image" class="form-control" placeholder="post image">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        @*Submit*@
+        <input type="reset" value="Reset" class="btn btn-outline-dark">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>

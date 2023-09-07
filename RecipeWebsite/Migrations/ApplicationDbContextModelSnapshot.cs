@@ -89,6 +89,10 @@ namespace RecipeWebsite.Migrations
                     b.Property<int>("PostCategory")
                         .HasColumnType("int");
 
+                    b.Property<string>("Recipe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

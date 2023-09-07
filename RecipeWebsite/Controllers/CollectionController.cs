@@ -24,5 +24,21 @@ namespace RecipeWebsite.Controllers
             Collection collection = await _collectionInterface.GetByIdAsync(id);
             return View(collection);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Collection collection)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(collection);
+            }
+            _collectionInterface.Add(collection);
+            return RedirectToAction("Index");
+        }
     }
 }

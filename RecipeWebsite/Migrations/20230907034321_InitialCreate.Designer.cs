@@ -11,7 +11,7 @@ using RecipeWebsite.Data;
 namespace RecipeWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230826125742_InitialCreate")]
+    [Migration("20230907034321_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -91,6 +91,10 @@ namespace RecipeWebsite.Migrations
 
                     b.Property<int>("PostCategory")
                         .HasColumnType("int");
+
+                    b.Property<string>("Recipe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()

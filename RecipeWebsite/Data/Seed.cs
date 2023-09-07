@@ -68,7 +68,8 @@ namespace RecipeWebsite.Data
                             Title = "Recipe Post 1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first Recipe",
-                            PostCategory = PostCategory.Veg
+                            PostCategory = PostCategory.Veg,
+                            Recipe = "Recipe"
                         },
 
                         new Post()
@@ -76,7 +77,8 @@ namespace RecipeWebsite.Data
                             Title = "Recipe Post 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the second Recipe",
-                            PostCategory = PostCategory.NonVeg                            
+                            PostCategory = PostCategory.NonVeg,                            
+                            Recipe = "Recipe"
                         }
                     });
                     context.SaveChanges();

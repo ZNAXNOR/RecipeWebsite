@@ -10,8 +10,9 @@ namespace RecipeWebsite.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Recipe { get; set; }
         public string Image { get; set; }
-
+        
         public PostCategory PostCategory { get; set; }
 
         [ForeignKey("AppUser")]
