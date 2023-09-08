@@ -1,6 +1,6 @@
 ﻿using RecipeWebsite.Models;
 
-namespace RecipeWebsite.Interface
+namespace RecipeWebsite.Interfaces
 {
     public interface ICollectionInterface
     {

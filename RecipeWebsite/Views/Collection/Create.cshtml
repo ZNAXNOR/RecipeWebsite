@@ -31,14 +31,13 @@
 
         @*Image*@
         <div class="mb-3">
-            @*<label asp-for="Image" class="form-label">Thumbnail</label>
-            <input class="form-control" type="file" id="formFile">*@
             <label asp-for="Image" class="form-label">Thumbnail</label>
-            <input asp-for="Image" class="form-control" placeholder="collection image">
+            <input asp-for="Image" class="form-control" type="file" id="formFile">
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>
 
         @*Submit*@
+        <input type="reset" value="Reset" class="btn btn-outline-dark">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     

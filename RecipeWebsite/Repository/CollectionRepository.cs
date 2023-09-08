@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecipeWebsite.Data;
-using RecipeWebsite.Interface;
+using RecipeWebsite.Interfaces;
 using RecipeWebsite.Models;
 
 namespace RecipeWebsite.Repository
