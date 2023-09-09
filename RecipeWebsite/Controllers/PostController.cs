@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RecipeWebsite.Interfaces;
+using RecipeWebsite.Interface;
 using RecipeWebsite.Models;
-using RecipeWebsite.ViewModels;
 
 namespace RecipeWebsite.Controllers
 {
     public class PostController : Controller
     {
         private readonly IPostInterface _postInterface;
-        private readonly IPhotoInterface _photoInterface;
 
-        public PostController(IPostInterface postInterface, IPhotoInterface photoInterface)
+        public PostController(IPostInterface postInterface)
         {
             _postInterface = postInterface;
-            _photoInterface = photoInterface;
         }
 
         public async Task<IActionResult> Index()
@@ -34,28 +31,14 @@ namespace RecipeWebsite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePostViewModel postVM)
+        public IActionResult Create(Post post)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var result = await _photoInterface.AddPhotoAsync(postVM.Image);
-
-                var post = new Post
-                {
-                    Title = postVM.Title,
-                    Description = postVM.Description,
-                    Recipe = postVM.Recipe,
-                    Image = result.Url.ToString()
-                };
-                _postInterface.Add(post);
-                return RedirectToAction("Index");
+                return View(post);
             }
-            else
-            {
-                ModelState.AddModelError("", "Photo upload failed");
-            }
-
-            return View(postVM);
+            _postInterface.Add(post);
+            return RedirectToAction("Index");
         }
     }
 }

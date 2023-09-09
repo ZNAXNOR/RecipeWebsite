@@ -1,6 +1,6 @@
 ﻿using RecipeWebsite.Models;
 
-namespace RecipeWebsite.Interfaces
+namespace RecipeWebsite.Interface
 {
     public interface IPostInterface
     {
