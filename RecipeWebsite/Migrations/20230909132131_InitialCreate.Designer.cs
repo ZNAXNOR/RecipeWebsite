@@ -11,7 +11,7 @@ using RecipeWebsite.Data;
 namespace RecipeWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230907034321_InitialCreate")]
+    [Migration("20230909132131_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

@@ -11,7 +11,7 @@ builder.Services.AddScoped<ICollectionInterface, CollectionRepository>();
 builder.Services.AddScoped<IPostInterface, PostRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Database_Connection"));
 });
 
 var app = builder.Build();
