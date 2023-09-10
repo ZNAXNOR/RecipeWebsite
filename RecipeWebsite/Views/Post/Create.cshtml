@@ -1,7 +1,7 @@
 ﻿@using RecipeWebsite.Data.Enum;
 @model Post
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
 
     <div class="container">
 
@@ -40,16 +40,14 @@
 
         @*Image*@
         <div class="mb-3">
-            @*<label asp-for="Image" class="form-label">Thumbnail</label>
-            <input class="form-control" type="file" id="formFile">*@
-            <label asp-for="Image" class="form-label">Thumbnail</label>
-            <input asp-for="Image" class="form-control" placeholder="post image">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>
 
         @*Submit*@
-        <input type="reset" value="Reset" class="btn btn-outline-dark">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
     </div>
 
 </form>

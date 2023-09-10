@@ -1,6 +1,7 @@
 ﻿@using RecipeWebsite.Data.Enum;
+@using RecipeWebsite.ViewModels.Collection;
 
-@model Collection
+@model CreateCollectionViewModel
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
         
@@ -31,15 +32,14 @@
 
         @*Image*@
         <div class="mb-3">
-            @*<label asp-for="Image" class="form-label">Thumbnail</label>
-            <input class="form-control" type="file" id="formFile">*@
-            <label asp-for="Image" class="form-label">Thumbnail</label>
-            <input asp-for="Image" class="form-control" placeholder="collection image">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>
 
         @*Submit*@
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
     </div>
     
 </form>

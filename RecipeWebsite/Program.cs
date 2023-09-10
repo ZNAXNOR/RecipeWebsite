@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using RecipeWebsite.Data;
-using RecipeWebsite.Interface;
+using RecipeWebsite.Helpers;
+using RecipeWebsite.Interfaces;
 using RecipeWebsite.Repository;
+using RecipeWebsite.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICollectionInterface, CollectionRepository>();
 builder.Services.AddScoped<IPostInterface, PostRepository>();
+builder.Services.AddScoped<IPhotoInterface, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database_Connection"));
