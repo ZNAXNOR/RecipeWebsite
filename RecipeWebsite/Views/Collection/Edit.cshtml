@@ -1,0 +1,45 @@
+﻿@using RecipeWebsite.Data.Enum;
+@using RecipeWebsite.ViewModels.Collection;
+
+@model EditCollectionViewModel
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+    <div class="container">
+
+        @*Title*@
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" placeholder="collection title">
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        @*Description*@
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input asp-for="Description" class="form-control" placeholder="collection description">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        @*CollectionCategory*@
+        <div class="mb-3">
+            <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
+            <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
+                <option value="">Choose a category...</option>
+            </select>
+            <span asp-validation-for="CollectionCategory" class="text-danger"></span>
+        </div>
+
+        @*Image*@
+        <div class="mb-3">
+            <label asp-for="Image" class="form-label">Thumbnail</label>
+            <input asp-for="Image" class="form-control" placeholder="collection image">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        @*Submit*@
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+
+</form>

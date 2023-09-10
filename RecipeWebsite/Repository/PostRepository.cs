@@ -36,6 +36,11 @@ namespace RecipeWebsite.Repository
             return await _context.Posts.FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Post> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Posts.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

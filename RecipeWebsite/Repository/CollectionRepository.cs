@@ -36,6 +36,11 @@ namespace RecipeWebsite.Repository
             return await _context.Collections.FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Collection> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Collections.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

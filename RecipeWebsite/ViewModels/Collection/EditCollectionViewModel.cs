@@ -1,5 +1,4 @@
 ﻿using RecipeWebsite.Data.Enum;
-using RecipeWebsite.Models;
 
 namespace RecipeWebsite.ViewModels.Collection
 {

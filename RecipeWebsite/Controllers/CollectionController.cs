@@ -55,5 +55,61 @@ namespace RecipeWebsite.Controllers
             }
             return View(collectionVM);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var collection = await _collectionInterface.GetByIdAsync(id);
+            if (collection == null) return View("Error");
+            var collectionVM = new EditCollectionViewModel
+            {
+                Title = collection.Title,
+                Description = collection.Description,
+                URL = collection.Image,
+                CollectionCategory = collection.CollectionCategory
+            };
+            return View(collectionVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditCollectionViewModel collectionVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit collection");
+                return View("Edit", collectionVM);
+            }
+
+            var userCollection = await _collectionInterface.GetByIdAsyncNoTracking(id);
+
+            if (userCollection != null)
+            {
+                try
+                {
+                    await _photoInterface.DeletePhotoAsync(userCollection.Image);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                    return View(collectionVM);
+                }
+                var photoResult = await _photoInterface.AddPhotoAsync(collectionVM.Image);
+
+                var collection = new Collection
+                {
+                    Id = id,
+                    Title = collectionVM.Title,
+                    Description = collectionVM.Description,
+                    Image = photoResult.Url.ToString()
+                };
+
+                _collectionInterface.Update(collection);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(collectionVM);
+            }
+        }
     }
 }
