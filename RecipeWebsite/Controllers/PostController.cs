@@ -34,6 +34,7 @@ namespace RecipeWebsite.Controllers
             return View();
         }
 
+        // Create
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel postVM)
         {
@@ -58,6 +59,7 @@ namespace RecipeWebsite.Controllers
             return View(postVM);
         }
 
+        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var post = await _postInterface.GetByIdAsync(id);
@@ -113,6 +115,24 @@ namespace RecipeWebsite.Controllers
             {
                 return View(postVM);
             }
+        }
+
+        // Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var postDetails = await _postInterface.GetByIdAsync(id);
+            if (postDetails == null) return View("Error");
+            return View(postDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var postDetails = await _postInterface.GetByIdAsync(id);
+            if (postDetails == null) return View("Error");
+
+            _postInterface.Delete(postDetails);
+            return RedirectToAction("Index");
         }
     }
 }

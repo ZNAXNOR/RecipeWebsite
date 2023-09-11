@@ -28,6 +28,7 @@ namespace RecipeWebsite.Controllers
             return View(collection);
         }
 
+        // Create
         public IActionResult Create()
         {
             return View();
@@ -56,6 +57,7 @@ namespace RecipeWebsite.Controllers
             return View(collectionVM);
         }
 
+        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var collection = await _collectionInterface.GetByIdAsync(id);
@@ -110,6 +112,24 @@ namespace RecipeWebsite.Controllers
             {
                 return View(collectionVM);
             }
+        }
+
+        // Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var collectionDetails = await _collectionInterface.GetByIdAsync(id);
+            if (collectionDetails == null) return View("Error");
+            return View(collectionDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteCollection(int id)
+        {
+            var collectionDetails = await _collectionInterface.GetByIdAsync(id);
+            if (collectionDetails == null) return View("Error");
+
+            _collectionInterface.Delete(collectionDetails);
+            return RedirectToAction("Index");
         }
     }
 }

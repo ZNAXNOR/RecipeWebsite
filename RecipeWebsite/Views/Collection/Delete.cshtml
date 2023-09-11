@@ -1,0 +1,44 @@
+﻿@using RecipeWebsite.Data.Enum;
+@model Collection
+
+<h1>Are you sure you want to delete this Collection?</h1>
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+
+    <div class="container">
+
+        @*Title*@
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" placeholder="collection title">
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        @*Description*@
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input asp-for="Description" class="form-control" placeholder="collection description">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        @*CollectionCategory*@
+        <div class="mb-3">
+            <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
+            <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
+                <option value="">Choose a category...</option>
+            </select>
+            <span asp-validation-for="CollectionCategory" class="text-danger"></span>
+        </div>
+
+        @*Image*@
+        <div class="mb-3">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        @*Submit*@
+        <button type="submit" class="btn btn-danger">Confirm</button>
+    </div>
+
+</form>
