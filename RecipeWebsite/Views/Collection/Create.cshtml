@@ -22,14 +22,16 @@
         </div>
 
         @*CollectionCategory*@
-        <div class="mb-3">
-            <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
-            <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
-                <option value="">Choose a category...</option>
-            </select>
-            <span asp-validation-for="CollectionCategory" class="text-danger"></span>
+        <div class="row g-3">
+            <div class="mb-3">
+                <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
+                <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
+                    <option value="">Choose a category...</option>
+                </select>
+                <span asp-validation-for="CollectionCategory" class="text-danger"></span>
+            </div>
         </div>
-
+        
         @*Image*@
         <div class="mb-3">
             <label asp-for="Image">Image</label>

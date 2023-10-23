@@ -1,0 +1,77 @@
+﻿﻿@using RecipeWebsite.ViewModels.Account
+
+@model LoginViewModel
+
+@* Header *@
+<div class="py-5 text-center">
+    <h2>Account Login form</h2>
+    <p class="lead">Already Registered? Login into your account here!</p>
+</div>
+
+@* Login form *@
+<form asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" method="post" role="form">
+    
+    <div class="row g-5">
+
+        @* Right Side *@
+        <div class="col-md-5 col-lg-4 order-md-last">
+            @* Oauth *@
+        </div>
+
+        @* Left Side *@
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Account Login Details</h4>
+            <form class="needs-validation" novalidate="">
+                <div class="row g-3">                    
+
+                    @* User Name *@
+                    <div class="col-12">
+                        <label asp-for="UserName" class="form-label">Username</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">@@</span>
+                            <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Username" required="">
+                            <div class="invalid-feedback">
+                                Your username is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Password *@
+                    <div class="col-12">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Password">
+                        <div class="invalid-feedback">
+                            Please enter atleast 6 characters.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                @* Remember Me *@
+                <div class="form-check">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
+
+                <hr class="my-4">
+
+                @* Login *@
+                <div class="form-group mb-3">
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Login</button>
+                </div>
+
+                <hr class="my-4">
+
+                @* Register *@
+                <p>
+                    <a asp-action="Register">Havent Registered yet?</a>
+                </p>
+            </form>
+        </div>
+
+    </div>
+
+</form>

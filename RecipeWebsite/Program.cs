@@ -27,8 +27,10 @@ builder.Services.Configure<CloudinarySettings>(CloudinaryDatabase);
 
 // Database
 var MSSQLdatabase = builder.Configuration.GetConnectionString("Database_Connection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => {options.UseSqlServer(MSSQLdatabase);
-});
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(MSSQLdatabase));
+
+// Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 // Email
 builder.Services.AddTransient<IEmailSenderInterface, EmailSenderService>();
@@ -38,12 +40,15 @@ builder.Services.Configure<EmailHelper>(builder.Configuration.GetSection("SMTP_C
 
 var app = builder.Build();
 
-// Seed
+#region Seed Data
+
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     // Seed.SeedUsersAndRolesAsync(app);
     Seed.SeedData(app);
 }
+
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
