@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipeWebsite.Data;
 using RecipeWebsite.Helpers;
@@ -9,17 +10,35 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Project Services
+
+// Collection
 builder.Services.AddScoped<ICollectionInterface, CollectionRepository>();
+
+// Post
 builder.Services.AddScoped<IPostInterface, PostRepository>();
+
+// Photo
 builder.Services.AddScoped<IPhotoInterface, PhotoService>();
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Database_Connection"));
+
+var CloudinaryDatabase = builder.Configuration.GetSection("CloudinarySettings");
+builder.Services.Configure<CloudinarySettings>(CloudinaryDatabase);
+
+// Database
+var MSSQLdatabase = builder.Configuration.GetConnectionString("Database_Connection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => {options.UseSqlServer(MSSQLdatabase);
 });
+
+// Email
+builder.Services.AddTransient<IEmailSenderInterface, EmailSenderService>();
+builder.Services.Configure<EmailHelper>(builder.Configuration.GetSection("SMTP_Credentials"));
+
+#endregion
 
 var app = builder.Build();
 
+// Seed
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     // Seed.SeedUsersAndRolesAsync(app);
