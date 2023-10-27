@@ -26,7 +26,8 @@
     @* Search bar *@
     <form class="d-flex w-50 mb-2" role="search" asp-controller="Post" asp-action="Index">
         <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search" name="SearchString" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success me-2" type="submit">Search</button>
+        <a class="btn btn-outline-danger" asp-area="" asp-controller="Post" asp-action="Index">Reset</a>
     </form>
 
 

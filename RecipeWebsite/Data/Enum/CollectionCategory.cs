@@ -2,6 +2,8 @@
 {
     public enum CollectionCategory
     {
+        Veg,
+        NonVeg,
         Breakfast,
         Lunch,
         Dinner,
