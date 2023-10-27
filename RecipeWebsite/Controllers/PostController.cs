@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RecipeWebsite.Data;
 using RecipeWebsite.Interfaces;
 using RecipeWebsite.Models;
-using RecipeWebsite.ViewModels.Post;
 using RecipeWebsite.ViewModels.Post;
 
 namespace RecipeWebsite.Controllers
@@ -10,31 +11,58 @@ namespace RecipeWebsite.Controllers
     {
         private readonly IPostInterface _postInterface;
         private readonly IPhotoInterface _photoInterface;
+        private readonly ApplicationDbContext _context;
 
-        public PostController(IPostInterface postInterface, IPhotoInterface photoInterface)
+        public PostController(IPostInterface postInterface, IPhotoInterface photoInterface, ApplicationDbContext context)
         {
             _postInterface = postInterface;
             _photoInterface = photoInterface;
+            _context = context;
         }
 
+
+        // Index
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             IEnumerable<Post> posts = await _postInterface.GetAll();
             return View(posts);
         }
 
+
+        // Search Bar
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (_context.Posts == null)
+            {
+                return Problem("No Results Found.");
+            }
+
+            var posts = from p in _context.Posts select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                posts = posts.Where(s => s.Title!.Contains(searchString));
+            }
+
+            return View(await posts.ToListAsync());
+        }
+
+
+        // Details
         public async Task<IActionResult> Detail(int id)
         {
             Post post = await _postInterface.GetByIdAsync(id);
             return View(post);
         }
 
+
+        // Create
         public IActionResult Create()
         {
             return View();
         }
-
-        // Create
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel postVM)
         {
@@ -58,6 +86,7 @@ namespace RecipeWebsite.Controllers
             }
             return View(postVM);
         }
+
 
         // Edit
         public async Task<IActionResult> Edit(int id)
@@ -116,6 +145,7 @@ namespace RecipeWebsite.Controllers
                 return View(postVM);
             }
         }
+
 
         // Delete
         public async Task<IActionResult> Delete(int id)

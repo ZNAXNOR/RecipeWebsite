@@ -30,7 +30,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Privacy" asp-action="Index">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Collection" asp-action="Index">Collection</a>
@@ -39,6 +39,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">Post</a>
                         </li>                        
                     </ul>
+
+                    @* Search bar *@
+                    <form class="d-flex w-50 me-5" role="search" asp-controller="Searchbar" asp-action="Index">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString" />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
 
                     @* Identity Start*@
                     <ul class="nav navbar-nav navbar-right">
@@ -70,7 +76,7 @@
         </nav>
     </header>
 
-    <div class="container-fluid">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

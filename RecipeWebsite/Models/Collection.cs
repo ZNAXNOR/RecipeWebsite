@@ -6,6 +6,7 @@ namespace RecipeWebsite.Models
 {
     public class Collection
     {
+        // Collection
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
@@ -14,6 +15,8 @@ namespace RecipeWebsite.Models
 
         public CollectionCategory CollectionCategory { get; set; }
 
+
+        // App User
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }

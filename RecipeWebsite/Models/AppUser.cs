@@ -14,6 +14,7 @@ namespace RecipeWebsite.Models
         public ICollection<Collection> Collections { get; set; }
         public ICollection<Post> Posts { get; set; }
 
+
         // Account
         public string FirstName { get; set; }
         public string LastName { get; set; }

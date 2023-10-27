@@ -6,6 +6,7 @@ namespace RecipeWebsite.Models
 {
     public class Post
     {
+        // Post
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
@@ -13,8 +14,11 @@ namespace RecipeWebsite.Models
         public string Recipe { get; set; }
         public string Image { get; set; }
         
+        // Category
         public PostCategory PostCategory { get; set; }
 
+
+        // App User
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }

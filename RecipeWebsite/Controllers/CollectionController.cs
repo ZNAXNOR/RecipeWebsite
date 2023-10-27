@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RecipeWebsite.Data;
 using RecipeWebsite.Interfaces;
 using RecipeWebsite.Models;
 using RecipeWebsite.ViewModels.Collection;
@@ -9,19 +11,48 @@ namespace RecipeWebsite.Controllers
     {
         private readonly ICollectionInterface _collectionInterface;
         private readonly IPhotoInterface _photoInterface;
+        private readonly ApplicationDbContext _context;
 
-        public CollectionController(ICollectionInterface collectionInterface, IPhotoInterface photoInterface)
+        public CollectionController(ICollectionInterface collectionInterface, IPhotoInterface photoInterface, ApplicationDbContext context)
         {
             _collectionInterface = collectionInterface;
             _photoInterface = photoInterface;
+            _context = context;
         }
 
+
+        // Index
         public async Task <IActionResult> Index()
         {
             IEnumerable<Collection> collections = await _collectionInterface.GetAll();
             return View(collections);
         }
 
+
+        // Search Bar
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (_context.Collections == null)
+            {
+                return Problem("No Results Found.");
+            }
+
+            var collections = from c in _context.Collections select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                collections = collections.Where(s => s.Title!.Contains(searchString));
+            }
+            else
+            {
+                Console.Write("Search string cannot be empty");
+            }
+
+            return View(await collections.ToListAsync());
+        }
+
+        // Detail
         public async Task<IActionResult> Detail(int id)
         {
             Collection collection = await _collectionInterface.GetByIdAsync(id);
@@ -56,6 +87,7 @@ namespace RecipeWebsite.Controllers
             }
             return View(collectionVM);
         }
+
 
         // Edit
         public async Task<IActionResult> Edit(int id)
@@ -113,6 +145,7 @@ namespace RecipeWebsite.Controllers
                 return View(collectionVM);
             }
         }
+
 
         // Delete
         public async Task<IActionResult> Delete(int id)
