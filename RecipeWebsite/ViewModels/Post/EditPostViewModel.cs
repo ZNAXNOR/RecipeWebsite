@@ -1,5 +1,4 @@
 ﻿using RecipeWebsite.Data.Enum;
-using RecipeWebsite.Models;
 
 namespace RecipeWebsite.ViewModels.Post
 {
@@ -8,6 +7,7 @@ namespace RecipeWebsite.ViewModels.Post
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string? Link { get; set; }
         public string Recipe { get; set; }
         public IFormFile Image { get; set; }
         public string? URL { get; set; }

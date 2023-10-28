@@ -74,6 +74,7 @@ namespace RecipeWebsite.Controllers
                 {
                     Title = postVM.Title,
                     Description = postVM.Description,
+                    Link = postVM.Link,
                     Recipe = postVM.Recipe,
                     Image = result.Url.ToString()
                 };
@@ -97,6 +98,7 @@ namespace RecipeWebsite.Controllers
             {
                 Title = post.Title,
                 Description = post.Description,
+                Link = post.Link,
                 URL = post.Image,
                 PostCategory = post.PostCategory
             };
@@ -132,6 +134,7 @@ namespace RecipeWebsite.Controllers
                     Id = id,
                     Title = postVM.Title,
                     Description = postVM.Description,
+                    Link = postVM.Link,
                     Recipe = postVM.Recipe,
                     Image = photoResult.Url.ToString()
                 };
