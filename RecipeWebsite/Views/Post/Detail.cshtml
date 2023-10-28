@@ -6,7 +6,7 @@
 
     <!-- Item Heading -->
     <h1 class="my-4">        
-        @Model.Title
+        @Html.Raw(Model.Title.Replace("\n", "<br />"))
     </h1>
 
     <!-- Item Description -->
@@ -17,7 +17,7 @@
 
         <div class="col-md-4">
             <h3 class="my-3">@Model.Title</h3>
-            <p>@Model.Description</p>
+            <p>@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
 
             <h3 class="my-3">Recipe Category</h3>
             <ul>
@@ -29,7 +29,7 @@
     <!-- Youtube Recipe Link -->
     @if(Model.Link != null)
     {
-        <h4><a href="@Model.Link" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank">Youtube Recipe Link</a></h4>
+        <h4><a href="@Html.Raw(Model.Link.Replace("\n", "<br />"))" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank">Youtube Recipe Link</a></h4>
     }
     else
     {
