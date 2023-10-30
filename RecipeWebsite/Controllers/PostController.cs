@@ -94,12 +94,14 @@ namespace RecipeWebsite.Controllers
         {
             var post = await _postInterface.GetByIdAsync(id);
             if (post == null) return View("Error");
+
             var postVM = new EditPostViewModel
             {
                 Title = post.Title,
                 Description = post.Description,
                 Link = post.Link,
                 URL = post.Image,
+                Recipe = post.Recipe,
                 PostCategory = post.PostCategory
             };
             return View(postVM);

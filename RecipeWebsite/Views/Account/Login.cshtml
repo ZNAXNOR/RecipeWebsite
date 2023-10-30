@@ -11,7 +11,7 @@
 @* Login form *@
 <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" method="post" role="form">
     
-    <div class="row g-5">
+    <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
         @* Right Side *@
         <div class="col-md-5 col-lg-4 order-md-last">
@@ -67,8 +67,12 @@
 
                 @* Register *@
                 <p>
-                    <a asp-action="Register">Havent Registered yet?</a>
+                    <a class="mb-5" asp-action="Register">Havent Registered yet?</a>
                 </p>
+
+                @* T & C *@
+                <small class="text-body-secondary form-text mb-5">® By clicking Login, you agree to the terms of use.</small>
+
             </form>
         </div>
 

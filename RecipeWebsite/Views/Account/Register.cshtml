@@ -11,7 +11,7 @@
 @* Registeration form *@
 <form asp-controller="Account" asp-action="Register" method="post" role="form">
     
-    <div class="row g-5">
+    <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
         @* Right Side *@
         <div class="col-md-5 col-lg-4 order-md-last">
@@ -45,11 +45,11 @@
                     <div class="col-12">
                         <label asp-for="UserName" class="form-label">Username</label>
                         <div class="input-group has-validation">
-                        <span class="input-group-text">@@</span>
-                        <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Username" required="">
-                        <div class="invalid-feedback">
-                            Your username is required.
-                        </div>
+                            <span class="input-group-text">@@</span>
+                            <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Username" required="">
+                            <div class="invalid-feedback">
+                                Your username is required.
+                            </div>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                     <div class="col-12">
                         <label asp-for="Email" class="form-label">Email</label>
                         <input asp-for="Email" type="email" class="form-control" id="email" placeholder="you@example.com">
-                        <div id="passwordHelpBlock" class="form-text">
+                        <div id="emailHelpBlock" class="form-text">
                             Please enter a valid email address for verification.
                         </div>
                         <div class="invalid-feedback">
@@ -80,7 +80,7 @@
                     <div class="col-12">
                         <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
                         <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirm password" placeholder="Confirm Password">
-                        <div id="passwordHelpBlock" class="form-text">
+                        <div id="confirmPasswordHelpBlock" class="form-text">
                             Confirm your Password here
                         </div>
                         <div class="invalid-feedback">
@@ -100,8 +100,12 @@
 
                 @* Login *@
                 <p>
-                    <a asp-action="Login">Already a Registered user?</a>
+                    <a class="m-3" asp-action="Login">Already a Registered user?</a>
                 </p>
+
+                @* T & C *@
+                <small class="text-body-secondary form-text mb-5">® By clicking Register, you agree to the terms of use.</small>
+
             </form>
         </div>
 

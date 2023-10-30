@@ -1,61 +1,99 @@
 ﻿@using RecipeWebsite.Data.Enum;
 @using RecipeWebsite.ViewModels.Post;
 
-@model EditPostViewModel
+@model CreatePostViewModel
+
+@* Header *@
+<div class="py-5 text-center">
+    <h2>Recipe Post form</h2>
+    <p class="lead">Got a new recipe? Create a new Post here to share the recipe with everyboy!</p>
+</div>
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
 
-    <div class="container">
+    <div class="row g-5">
+        
+        <form class="needs-validation" novalidate="">
+            <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
-        @*Title*@
-        <div class="mb-3">
-            <label asp-for="Title" class="form-label">Title</label>
-            <input asp-for="Title" class="form-control" placeholder="post title">
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
+                <h4 class="mb-4">Recipe Details</h4>
 
-        @*Description*@
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label">Description</label>
-            <input asp-for="Description" class="form-control" placeholder="post description">
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                @* Title *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Title" class="form-label">Recipe Title</label>
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Recipe Title is required.
+                    </div>
+                </div>
 
-        @*Link*@
-        <div class="mb-3">
-            <label asp-for="Link" class="form-label">Youtube Recipe Link</label>
-            <input asp-for="Link" class="form-control" placeholder="youtube recipe link">
-        </div>
+                @* Description *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Description" class="form-label">Recipe Description</label>
+                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Recipe Description is required.
+                    </div>
+                </div>
 
-        @*PostCategory*@
-        <div class="mb-3">
-            <label asp-for="PostCategory" class="form-label">Post Category</label>
-            <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control">
-                <option value="">Choose a category...</option>
-            </select>
-            <span asp-validation-for="PostCategory" class="text-danger"></span>
-        </div>
+                @* Link *@
+                <div class="col-12 mb-3">
+                    <label asp-for="Link" class="form-label">Recipe Link</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">@@</span>
+                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link" required="">                        
+                    </div>
+                    <div id="confirmPasswordHelpBlock" class="form-text">
+                        Paste your youtube recipe link here.
+                    </div>
+                </div>
 
-        @*Ingredients*@
+                @* Post Category *@
+                <div class="col-md-12 mb-3">
+                    <label asp-for="PostCategory" class="form-label">Post Category</label>
+                    <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required="">
+                        <option value="">Choose a category</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid category.
+                    </div>
+                </div>
 
+                @* Ingredients *@
 
-        @*Recipe*@
-        <div class="mb-3">
-            <label asp-for="Recipe" class="form-label">Recipe</label>
-            <textarea asp-for="Recipe" class="form-control" id="Recipe" placeholder="recipe goes here" rows="5"></textarea>
-            <span asp-validation-for="Recipe" class="text-danger"></span>
-        </div>
+                @* Recipe *@
+                <div class="col-12 mb-3">
+                    <label asp-for="Recipe" class="form-label">Recipe</label>
+                    <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" value="" required="" rows="5">Recipe Body</textarea>
+                    <div class="invalid-feedback">
+                        Recipe Body is required.
+                    </div>
+                </div>
 
-        @*Image*@
-        <div class="mb-3">
-            <label asp-for="Image">Image</label>
-            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+                @* Image *@
+                <div class="col-12 mb-5">
+                    <label asp-for="Image">Image</label>
+                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required="">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Recipe Thumbnail is required.
+                    </div>
+                </div>
 
-        @*Submit*@
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
+                @*Submit*@
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Post Recipe</button>
+                    <button type="reset" class="btn btn-outline-secondary btn-lg px-4">Reset Form</button>
+                </div>
+
+                <hr class="my-4">
+
+                @* T & C *@
+                <small class="text-body-secondary form-text mb-5">® By clicking Post Recipe, you agree to the terms of use.</small>
+
+            </div>
+        </form>
+
     </div>
 
 </form>

@@ -3,45 +3,74 @@
 
 @model CreateCollectionViewModel
 
+@* Header *@
+<div class="py-5 text-center">
+    <h2>Collection Post form</h2>
+    <p class="lead">Got a new collection? Create it here!</p>
+</div>
+
 <form method="post" asp-action="Create" enctype="multipart/form-data">
         
-    <div class="container">
-
-        @*Title*@
-        <div class="mb-3">
-            <label asp-for="Title" class="form-label">Title</label>
-            <input asp-for="Title" class="form-control" placeholder="collection title">
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-
-        @*Description*@
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label">Description</label>
-            <input asp-for="Description" class="form-control" placeholder="collection description">
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        @*CollectionCategory*@
-        <div class="row g-3">
-            <div class="mb-3">
-                <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
-                <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
-                    <option value="">Choose a category...</option>
-                </select>
-                <span asp-validation-for="CollectionCategory" class="text-danger"></span>
-            </div>
-        </div>
+    <div class="row g-5">
         
-        @*Image*@
-        <div class="mb-3">
-            <label asp-for="Image">Image</label>
-            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+        <form class="needs-validation" novalidate="">
+            <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
-        @*Submit*@
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
+                <h4 class="mb-4">Collection Details</h4>
+
+                @* Title *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Title" class="form-label">Collection Title</label>
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Collection Title is required.
+                    </div>
+                </div>
+
+                @* Description *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Description" class="form-label">Recipe Description</label>
+                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Collection Description is required.
+                    </div>
+                </div>
+
+                @* Collection Category *@
+                <div class="col-md-12 mb-3">
+                    <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
+                    <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control" required="">
+                        <option value="">Choose a category</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid category.
+                    </div>
+                </div>
+        
+                @* Image *@
+                <div class="col-12 mb-5">
+                    <label asp-for="Image">Image</label>
+                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required="">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Collection Thumbnail is required.
+                    </div>
+                </div>
+
+                @*Submit*@
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Post Collection</button>
+                    <button type="reset" class="btn btn-outline-secondary btn-lg px-4">Reset Form</button>
+                </div>
+
+                <hr class="my-4">
+
+                @* T & C *@
+                <small class="text-body-secondary form-text mb-5">® By clicking Post Collection, you agree to the terms of use.</small>
+
+            </div>
+        </form>
+
     </div>
-    
+
 </form>

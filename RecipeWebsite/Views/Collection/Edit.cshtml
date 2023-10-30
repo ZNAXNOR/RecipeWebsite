@@ -3,43 +3,68 @@
 
 @model EditCollectionViewModel
 
+@* Header *@
+<div class="py-5 text-center">
+    <h2>Collection Edit form</h2>
+    <p class="lead">Need to Edit a Collection? Edit here!</p>
+</div>
+
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
 
-    <div class="container">
+    <div class="row g-5">
 
-        @*Title*@
-        <div class="mb-3">
-            <label asp-for="Title" class="form-label">Title</label>
-            <input asp-for="Title" class="form-control" placeholder="collection title">
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
+        <form class="needs-validation" novalidate="">
+            <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
-        @*Description*@
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label">Description</label>
-            <input asp-for="Description" class="form-control" placeholder="collection description">
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                <h4 class="mb-4">Collection Details</h4>
 
-        @*CollectionCategory*@
-        <div class="mb-3">
-            <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
-            <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control">
-                <option value="">Choose a category...</option>
-            </select>
-            <span asp-validation-for="CollectionCategory" class="text-danger"></span>
-        </div>
+                @* Title *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Title" class="form-label">Collection Title</label>
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required="">
+                    <div class="invalid-feedback">
+                        Collection Title is required.
+                    </div>
+                </div>
 
-        @*Image*@
-        <div class="mb-3">
-            <label asp-for="Image" class="form-label">Thumbnail</label>
-            <input asp-for="Image" class="form-control" placeholder="collection image">
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+                @* Description *@
+                <div class="col-sm-12 mb-3">
+                    <label asp-for="Description" class="form-label">Recipe Description</label>
+                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required="">
+                    <div class="invalid-feedback">
+                        Collection Description is required.
+                    </div>
+                </div>
 
-        @*Submit*@
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
+                @* Collection Category *@
+                <div class="col-md-12 mb-3">
+                    <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
+                    <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control" required="">
+                        <option value="">Choose a category</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid category.
+                    </div>
+                </div>
+
+                @* Image *@
+                <div class="col-12 mb-5">
+                    <label asp-for="Image">Image</label>
+                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required="">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Collection Thumbnail is required.
+                    </div>
+                </div>
+
+                @*Submit*@
+                <div class="form-group mb-3">
+                    <button class="w-100 btn btn-success btn-lg" type="submit">Edit Collection</button>
+                </div>
+
+            </div>
+        </form>
+
     </div>
 
 </form>
