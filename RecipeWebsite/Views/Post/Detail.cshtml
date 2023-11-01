@@ -39,9 +39,13 @@
     <!-- Item Ingredients -->
     <h3 class="my-4">Ingredients</h3>
     <ul>
-        <li>Ingredients 1</li>
-        <li>Ingredients 2</li>
-        <li>Ingredients 3</li>
+        @{
+            var ingredients = Model.Ingredient.Split(',');
+            foreach (var ingredient in ingredients)
+            {
+                <li>@ingredient</li>
+            }
+        }
     </ul>
 
     <!-- Item Description -->

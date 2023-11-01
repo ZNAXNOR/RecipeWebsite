@@ -41,7 +41,7 @@
                     <label asp-for="Link" class="form-label">Recipe Link</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text">@@</span>
-                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link" required="">
+                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link">
                     </div>
                     <div id="confirmPasswordHelpBlock" class="form-text">
                         Paste your youtube recipe link here.
@@ -60,6 +60,13 @@
                 </div>
 
                 @* Ingredients *@
+                <div class="col-12 mb-3">
+                    <label asp-for="Ingredient" class="form-label">Ingredients</label>
+                    <textarea asp-for="Ingredient" type="text" class="form-control" id="ingredient" placeholder="ingredients goes here" required="" rows="5">Ingredients</textarea>
+                    <div class="invalid-feedback">
+                        Ingredients are required.
+                    </div>
+                </div>
 
                 @* Recipe *@
                 <div class="col-12 mb-3">
