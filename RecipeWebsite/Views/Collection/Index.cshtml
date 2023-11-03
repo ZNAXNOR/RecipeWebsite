@@ -22,7 +22,7 @@
 
     @* Search bar *@
     <form class="d-flex w-50 mb-2" role="search" asp-controller="Collection" asp-action="Index">
-        <input class="form-control me-2" type="search" placeholder="Search Collections" aria-label="Search" name="SearchString" />
+        <input class="form-control me-2" type="search" placeholder="Search Collections" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
         <button class="btn btn-outline-success me-2" type="submit">Search</button>
         <a class="btn btn-outline-danger" asp-area="" asp-controller="Collection" asp-action="Index">Reset</a>
     </form>

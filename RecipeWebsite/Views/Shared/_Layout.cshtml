@@ -42,8 +42,9 @@
 
                     @* Search bar *@
                     <form class="d-flex w-50 me-5" role="search" asp-controller="Searchbar" asp-action="Index">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString" />
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
                         <button class="btn btn-outline-success" type="submit">Search</button>
+                        <div class="invalid-feedback"></div>
                     </form>
 
                     @* Identity Start*@
