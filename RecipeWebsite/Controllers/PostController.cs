@@ -75,6 +75,7 @@ namespace RecipeWebsite.Controllers
                     Title = postVM.Title,
                     Description = postVM.Description,
                     Link = postVM.Link,
+                    PostCategory = postVM.PostCategory,
                     Ingredient = postVM.Ingredient,
                     Recipe = postVM.Recipe,
                     Image = result.Url.ToString()
@@ -101,10 +102,10 @@ namespace RecipeWebsite.Controllers
                 Title = post.Title,
                 Description = post.Description,
                 Link = post.Link,
+                PostCategory = post.PostCategory,
                 Ingredient = post.Ingredient,
                 URL = post.Image,
-                Recipe = post.Recipe,
-                PostCategory = post.PostCategory
+                Recipe = post.Recipe
             };
             return View(postVM);
         }
@@ -139,6 +140,7 @@ namespace RecipeWebsite.Controllers
                     Title = postVM.Title,
                     Description = postVM.Description,
                     Link = postVM.Link,
+                    PostCategory = postVM.PostCategory,
                     Ingredient = postVM.Ingredient,
                     Recipe = postVM.Recipe,
                     Image = photoResult.Url.ToString()

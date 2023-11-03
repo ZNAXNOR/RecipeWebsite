@@ -76,6 +76,7 @@ namespace RecipeWebsite.Controllers
                 {
                     Title = collectionVM.Title,
                     Description = collectionVM.Description,
+                    CollectionCategory = collectionVM.CollectionCategory,
                     Image = result.Url.ToString()
                 };
                 _collectionInterface.Add(collection);
@@ -98,8 +99,8 @@ namespace RecipeWebsite.Controllers
             {
                 Title = collection.Title,
                 Description = collection.Description,
-                URL = collection.Image,
-                CollectionCategory = collection.CollectionCategory
+                CollectionCategory = collection.CollectionCategory,
+                URL = collection.Image
             };
             return View(collectionVM);
         }
@@ -133,6 +134,7 @@ namespace RecipeWebsite.Controllers
                     Id = id,
                     Title = collectionVM.Title,
                     Description = collectionVM.Description,
+                    CollectionCategory = collectionVM.CollectionCategory,
                     Image = photoResult.Url.ToString()
                 };
 
