@@ -20,7 +20,7 @@
                 @* Title *@
                 <div class="col-sm-12 mb-3">
                     <label asp-for="Title" class="form-label">Recipe Title</label>
-                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required="" disabled readonly>
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required disabled readonly>
                     <div class="invalid-feedback">
                         Recipe Title is required.
                     </div>
@@ -29,7 +29,7 @@
                 @* Description *@
                 <div class="col-sm-12 mb-3">
                     <label asp-for="Description" class="form-label">Recipe Description</label>
-                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required="" disabled readonly>
+                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required disabled readonly>
                     <div class="invalid-feedback">
                         Recipe Description is required.
                     </div>
@@ -40,7 +40,7 @@
                     <label asp-for="Link" class="form-label">Recipe Link</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text">@@</span>
-                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link" required="" disabled readonly>
+                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link" required disabled readonly>
                     </div>
                     <div id="confirmPasswordHelpBlock" class="form-text">
                         Paste your youtube recipe link here.
@@ -50,7 +50,7 @@
                 @* Post Category *@
                 <div class="col-md-12 mb-3">
                     <label asp-for="PostCategory" class="form-label">Post Category</label>
-                    <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required="" disabled readonly>
+                    <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required disabled readonly>
                         <option value="">Choose a category</option>
                     </select>
                     <div class="invalid-feedback">
@@ -63,7 +63,7 @@
                 @* Recipe *@
                 <div class="col-12 mb-3">
                     <label asp-for="Recipe" class="form-label">Recipe</label>
-                    <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" required="" rows="5" disabled readonly>Recipe Body</textarea>
+                    <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" required rows="5" disabled readonly>Recipe Body</textarea>
                     <div class="invalid-feedback">
                         Recipe Body is required.
                     </div>
@@ -72,7 +72,7 @@
                 @* Image *@
                 <div class="col-12 mb-5">
                     <label asp-for="Image">Image</label>
-                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required="" disabled readonly>
+                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required disabled readonly>
                     <span asp-validation-for="Image" class="text-danger"></span>
                     <div class="invalid-feedback">
                         Recipe Thumbnail is required.

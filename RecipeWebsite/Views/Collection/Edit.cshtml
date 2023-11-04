@@ -21,7 +21,7 @@
                 @* Title *@
                 <div class="col-sm-12 mb-3">
                     <label asp-for="Title" class="form-label">Collection Title</label>
-                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required="">
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required>
                     <div class="invalid-feedback">
                         Collection Title is required.
                     </div>
@@ -30,7 +30,7 @@
                 @* Description *@
                 <div class="col-sm-12 mb-3">
                     <label asp-for="Description" class="form-label">Recipe Description</label>
-                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required="">
+                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required>
                     <div class="invalid-feedback">
                         Collection Description is required.
                     </div>
@@ -39,7 +39,7 @@
                 @* Collection Category *@
                 <div class="col-md-12 mb-3">
                     <label asp-for="CollectionCategory" class="form-label">Collection Category</label>
-                    <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control" required="">
+                    <select asp-for="CollectionCategory" asp-items="@Html.GetEnumSelectList<CollectionCategory>()" class="form-control" required>
                         <option value="">Choose a category</option>
                     </select>
                     <div class="invalid-feedback">
@@ -50,7 +50,7 @@
                 @* Image *@
                 <div class="col-12 mb-5">
                     <label asp-for="Image">Image</label>
-                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required="">
+                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required>
                     <span asp-validation-for="Image" class="text-danger"></span>
                     <div class="invalid-feedback">
                         Collection Thumbnail is required.
