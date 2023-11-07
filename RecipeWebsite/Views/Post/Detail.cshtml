@@ -102,21 +102,41 @@
                                 <th scope="col">Ingredient Quantity</th>
                             </tr>
                         </thead>
-                        <tbody class="table-light">
-                            @{
-                                var ingredients = Model.Ingredient.Split(',');
-                                var i = 1;
-                                foreach (var ingredient in ingredients)
-                                {
-                                    <tr>
-                                        <th scope="row">@i</th>
-                                        <td>@ingredient.Split('-')[0]</td>
-                                        <td>@ingredient.Split('-')[1]</td>
-                                    </tr>
-                                    i++;
+                        @if (Model.Ingredient.Length != 0)
+                        {
+                            <tbody class="table-light">
+                                @{
+                                    var ingredients = Model.Ingredient.Split(',');
+                                    var i = 1;
+                                    foreach (var ingredient in ingredients)
+                                    {
+                                        <tr>
+                                            <th scope="row">@i</th>
+                                            @if (ingredient.Contains('-'))
+                                            {
+                                                <td>@ingredient.Split('-')[0]</td>
+                                                <td>@ingredient.Split('-')[1]</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@ingredient</td>
+                                                <td>...</td>
+                                            }
+                                        </tr>
+                                        i++;
+                                    }
                                 }
-                            }
-                        </tbody>
+                            </tbody>
+                        }
+                        else
+                        {
+                            <caption>No ingredients</caption>
+                            <tbody class="table">
+                                <tr>
+                                    <th scope="row">...</th>
+                                </tr>
+                            </tbody>
+                        }
                     </table>
                 </div>
 
