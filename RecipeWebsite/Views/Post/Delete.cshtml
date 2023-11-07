@@ -4,88 +4,155 @@
 
 @* Header *@
 <div class="py-5 text-center">
-    <h2>Post Delete form</h2>
-    <p class="lead">Got a post you want to delete? Delete it here!</p>
+    <h2>Delete Recipe form</h2>
+    <p class="lead">Got a recipe you want to delete? Delete it here!</p>
 </div>
 
 <form method="post" asp-action="Delete" enctype="multipart/form-data">
 
     <div class="row g-5">
+        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
-        <form class="needs-validation" novalidate="">
-            <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <!-- Title -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe Title</a>
+            </h4>
+            <p class="h3 pb-3 mb-4 border-bottom">
+                @Html.Raw(Model.Title.Replace("\n", "<br />"))
+            </p>
 
-                <h4 class="mb-4">Recipe Details</h4>
+            <!-- Description -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe Description</a>
+            </h4>
+            <p class="h6 text-body-secondary pb-3 mb-4 border-bottom">
+                @Html.Raw(Model.Description.Replace("\n", "<br />"))
+            </p>
 
-                @* Title *@
-                <div class="col-sm-12 mb-3">
-                    <label asp-for="Title" class="form-label">Recipe Title</label>
-                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" required disabled readonly>
-                    <div class="invalid-feedback">
-                        Recipe Title is required.
-                    </div>
-                </div>
-
-                @* Description *@
-                <div class="col-sm-12 mb-3">
-                    <label asp-for="Description" class="form-label">Recipe Description</label>
-                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" required disabled readonly>
-                    <div class="invalid-feedback">
-                        Recipe Description is required.
-                    </div>
-                </div>
-
-                @* Link *@
-                <div class="col-12 mb-3">
-                    <label asp-for="Link" class="form-label">Recipe Link</label>
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">@@</span>
-                        <input asp-for="Link" type="text" class="form-control" id="link" placeholder="Youtube Recipe Link" required disabled readonly>
-                    </div>
-                    <div id="confirmPasswordHelpBlock" class="form-text">
-                        Paste your youtube recipe link here.
-                    </div>
-                </div>
-
-                @* Post Category *@
-                <div class="col-md-12 mb-3">
-                    <label asp-for="PostCategory" class="form-label">Post Category</label>
-                    <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required disabled readonly>
-                        <option value="">Choose a category</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a valid category.
-                    </div>
-                </div>
-
-                @* Ingredients *@
-
-                @* Recipe *@
-                <div class="col-12 mb-3">
-                    <label asp-for="Recipe" class="form-label">Recipe</label>
-                    <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" required rows="5" disabled readonly>Recipe Body</textarea>
-                    <div class="invalid-feedback">
-                        Recipe Body is required.
-                    </div>
-                </div>
-
-                @* Image *@
-                <div class="col-12 mb-5">
-                    <label asp-for="Image">Image</label>
-                    <input asp-for="Image" type="file" class="form-control" id="image" placeholder="Thumbnail" required disabled readonly>
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                    <div class="invalid-feedback">
-                        Recipe Thumbnail is required.
-                    </div>
-                </div>
-
-                @*Submit*@
-                <div class="form-group mb-3">
-                    <button class="w-100 btn btn-danger btn-lg" type="submit">Delete Post</button>
-                </div>
-
+            <!-- Image -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe Image</a>
+            </h4>
+            <div class="pb-3 mb-4 border-bottom">
+                <img class="img-fluid rounded" src="@Model.Image" alt="">
             </div>
-        </form>
+
+            <!-- Youtube Link -->
+            <div class="pb-3 mb-4 border-bottom">
+                <h4 class="fw-normal mb-3">
+                    <a class="link-dark">Recipe Link</a>
+                </h4>
+                @if (Model.Link != null)
+                {
+                    <h5 class="fst-italic" id="youtube-recipe-link">
+                        <p><a href="@Html.Raw(Model.Link.Replace("\n", "<br />"))" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank">Youtube Recipe Link</a> : @Model.Link</p>
+                    </h5>
+                }
+                else
+                {
+                    <p class="h6 text-body-secondary">
+                        No Link Available 
+                    </p>
+                }
+            </div>
+
+            <!-- Category -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe Category</a>
+            </h4>
+            <ul class="pb-3 mb-4 border-bottom">
+                <li>@Model.PostCategory</li>
+            </ul>
+
+            <!-- Ingredients -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe Ingredients</a>
+            </h4>
+            <div class="pb-3 mb-4 border-bottom">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ingredient Name</th>
+                            <th scope="col">Ingredient Quantity</th>
+                        </tr>
+                    </thead>
+                    @if (Model.Ingredient.Length != 0)
+                    {
+                        <tbody class="table-light">
+                            @{
+                                var ingredients = Model.Ingredient.Split(',');
+                                var i = 1;
+                                foreach (var ingredient in ingredients)
+                                {
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        @if (ingredient.Contains('-'))
+                                        {
+                                            <td>@ingredient.Split('-')[0]</td>
+                                            <td>@ingredient.Split('-')[1]</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@ingredient</td>
+                                            <td>...</td>
+                                        }
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <caption>No ingredients</caption>
+                        <tbody class="table">
+                            <tr>
+                                <th scope="row">...</th>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+            </div>
+
+            <!-- Recipe -->
+            <h4 class="fw-normal mb-3">
+                <a class="link-dark">Recipe</a>
+            </h4>
+            <p class="pb-3 mb-4 border-bottom">
+                @Html.Raw(Model.Recipe.Replace("\n", "<br />"))
+            </p>
+
+            <!-- Delete -->
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-danger btn-lg px-4 gap-3" data-bs-toggle="modal" data-bs-target="#recipeDeleteModal">Delete Recipe</button>
+                <a class="btn btn-secondary btn-lg px-4" asp-area="" asp-controller="Post" asp-action="Index">Cancel</a>
+            </div>
+
+            <!-- Delete Confirmation -->
+            <div class="modal fade" id="recipeDeleteModal" tabindex="-1" aria-labelledby="recipeDelete" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <!-- Model Header -->
+                        <div class="modal-header bg-dark text-white">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Recipe Delete?</h1>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- Model Body -->
+                        <div class="modal-body">
+                            <p class="fs-4">Are you sure you want to delete <strong>@Model.Title</strong> ?</p>
+                            <p class="fst-italic"><small>This action<code> cannot be reverted</code>.</small></p>
+                        </div>
+                        <!-- Model Buttons -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
