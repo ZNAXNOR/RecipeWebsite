@@ -9,7 +9,7 @@
     <p class="lead">Need to Edit a Recipe? Edit here!</p>
 </div>
 
-<form method="post" asp-action="Edit" enctype="multipart/form-data" class="needs-validation" novalidate="">
+<form method="post" asp-action="Edit" enctype="multipart/form-data" class="needs-validation" novalidate>
 
     <div class="row g-5">
 
@@ -93,8 +93,10 @@
             </div>
 
             @*Submit*@
-            <div class="form-group mb-3">
-                <button class="w-100 btn btn-success btn-lg" type="submit">Edit Recipe</button>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Post Recipe</button>
+                <button type="reset" class="btn btn-secondary btn-lg px-4">Reset Form</button>
+                <a class="btn btn-danger btn-lg px-4" asp-area="" asp-controller="Post" asp-action="Index">Cancel</a>
             </div>
 
         </div>

@@ -2,7 +2,7 @@
 
 <main>
 
-    @* Hero *@
+    <!-- Hero -->
     <div class="px-4 py-5 my-5 text-center">
 
         <h1 class="display-5 fw-bold text-body-emphasis">Posts</h1>
@@ -20,7 +20,7 @@
     </div>
 
 
-    @* Search bar *@
+    <!-- Search bar -->
     <form class="d-flex w-50 mb-2" role="search" asp-controller="Post" asp-action="Index">
         <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
         <button class="btn btn-outline-success me-2" type="submit">Search</button>
@@ -28,7 +28,7 @@
     </form>
 
 
-    @* Cards *@
+    <!-- Cards -->
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -42,7 +42,7 @@
                             @* Card Details *@
                             <div class="card-body">
                                 <a asp-controller="Post" asp-action="Detail" asp-route-id="@item.Id" class="stretched-link"></a>
-                                <p class="card-text">@item.Title</p>
+                                <h6 class="card-text"> @item.Title </h6>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="text-body-secondary">@item.PostCategory</small>
                                 </div>

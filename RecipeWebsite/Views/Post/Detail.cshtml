@@ -1,55 +1,138 @@
 ﻿@model Post
 
-<!-- Page Content -->
+<div class="row">
 
-<div class="container">
+    <div class="col-4">
 
-    <!-- Item Heading -->
-    <h1 class="my-4">        
-        @Html.Raw(Model.Title.Replace("\n", "<br />"))
-    </h1>
+        <!--Table of content-->
+        <div class="position-sticky" style="top: 2rem;">
+            <aside class="bd-aside sticky-xl-top text-body-secondary align-self-start mb-3 mb-xl-5 px-2">
 
-    <!-- Item Description -->
-    <div class="row mb-3">
-        <div class="col-md-8">
-            <img class="img-fluid rounded" src="@Model.Image" alt="" width="540px" height="810px">
-        </div>
+                <!--Recipe Title-->
+                <div class="pt-4 pb-3 mb-4 border-bottom text-break">
+                    <h4>
+                        @Html.Raw(Model.Title.Replace("\n", "<br />"))
+                    </h4>
 
-        <div class="col-md-4">
-            <h3 class="my-3">@Model.Title</h3>
-            <p>@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
+                    <p id="recipe-description">
+                        @Html.Raw(Model.Description.Replace("\n", "<br />"))
+                    </p>
+                </div>
 
-            <h3 class="my-3">Recipe Category</h3>
-            <ul>
-                <li>@Model.PostCategory</li>                
-            </ul>
+                <nav class="small" id="toc">
+                    <ul class="list-unstyled">
+
+                        <li class="my-2">
+                            <!-- Category-1 -->
+                            <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse" aria-expanded="false"
+                                    data-bs-target="#contents-collapse" aria-controls="contents-collapse">Introduction</button>
+                            <!-- SubCategory-1 -->
+                            <nav class="nav nav-pills flex-column">
+                                <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
+                                    <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#recipe-image">Image</a></li>
+                                    <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#youtube-recipe-link">Youtube link</a></li>
+                                    <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#recipe-category">Category</a></li>
+                                </ul>
+                            </nav>
+                        </li>
+
+                        <li class="my-2">
+                            <!-- Category-2 -->
+                            <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse" aria-expanded="false"
+                                    data-bs-target="#forms-collapse" aria-controls="forms-collapse">Recipe</button>
+                            <!-- SubCategory-2 -->
+                            <ul class="list-unstyled ps-3 collapse" id="forms-collapse">
+                                <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#recipe-ingredients">Ingredients</a></li>
+                                <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#recipe-body">Recipe</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </aside>
+
         </div>
     </div>
 
-    <!-- Youtube Recipe Link -->
-    @if(Model.Link != null)
-    {
-        <h4><a href="@Html.Raw(Model.Link.Replace("\n", "<br />"))" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank">Youtube Recipe Link</a></h4>
-    }
-    else
-    {
-        // When link is null, do not display.
-    }
+    <!-- Actual Content -->
+    <div class="col-8 pt-4 pb-3 mb-4">
 
-    <!-- Item Ingredients -->
-    <h3 class="my-4">Ingredients</h3>
-    <ul>
-        @{
-            var ingredients = Model.Ingredient.Split(',');
-            foreach (var ingredient in ingredients)
-            {
-                <li>@ingredient</li>
-            }
-        }
-    </ul>
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch ps-4 border-start">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
 
-    <!-- Item Description -->
-    <h3 class="my-4">Recipe</h3>
-    <p>@Html.Raw(Model.Recipe.Replace("\n", "<br />"))</p>
+                <!-- Image -->
+                <h4 class="fw-normal mb-3">
+                    <a class="link-dark" href="#recipe-image" id="recipe-image">Recipe Image</a>
+                </h4>
+                <div class="col-md-8 mb-4 shadow p-0">
+                    <img class="img-fluid rounded" src="@Model.Image" alt="" width="540px" height="810px">
+                </div>
+
+                <!-- Youtube Link -->
+                @if (Model.Link != null)
+                {
+                    <h5 class="fst-italic pb-3 mb-4 border-bottom" id="youtube-recipe-link">
+                        <a href="@Html.Raw(Model.Link.Replace("\n", "<br />"))" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank">Youtube Recipe Link</a>
+                    </h5>
+                }
+                else
+                {
+                    // When link is null, do not display.
+                }
+
+                <!-- Category -->
+                <h4 class="fw-normal mb-3">
+                    <a class="link-dark" href="#recipe-category" id="recipe-category">Recipe Category</a>
+                </h4>
+                <ul class="pb-3 mb-4 border-bottom">
+                    <li>@Model.PostCategory</li>
+                </ul>
+
+                <!-- Ingredients -->
+                <h4 class="fw-normal mb-3">
+                    <a class="link-dark" href="#recipe-ingredients" id="recipe-ingredients">Recipe Ingredients</a>
+                </h4>
+                <div class="pb-3 mb-4 border-bottom">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ingredient Name</th>
+                                <th scope="col">Ingredient Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-light">
+                            @{
+                                var ingredients = Model.Ingredient.Split(',');
+                                var i = 1;
+                                foreach (var ingredient in ingredients)
+                                {
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td>@ingredient.Split('-')[0]</td>
+                                        <td>@ingredient.Split('-')[1]</td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Recipe -->
+                <h4 class="fw-normal mb-3">
+                    <a class="link-dark" href="#recipe-body" id="recipe-body">Recipe</a>
+                </h4>
+                <p class="mb-4">
+                    @Html.Raw(Model.Recipe.Replace("\n", "<br />"))
+                </p>
+            </div>
+
+        </nav>
+
+    </div>
 
 </div>
+
+<link rel="stylesheet" href="~/css/tableOfContent.css"/>

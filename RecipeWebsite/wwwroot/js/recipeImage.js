@@ -4,7 +4,7 @@
     if (fileUpload.files.length > 0) {      // FIRST CHECK IF ANY FILE IS SELECTED.
 
         for (var i = 0; i <= fileUpload.files.length - 1; i++) {
-            var fileName, fileExtension, fileSize, fileType, dateModified;
+            var fileName, fileExtension, fileSize, fileType;
 
             // FILE NAME AND EXTENSION.
             fileName = fileUpload.files.item(i).name;
@@ -39,8 +39,7 @@
                             'Size: <b>' + Math.round((imgInp.size / 1024)) + '</b> KB <br />' +
                             'Width: <b>' + width + '</b> <br />' +
                             'Height: <b>' + height + '</b> <br />' +
-                            'Type: <b>' + imgInp.type + '</b> <br />' +
-                            'Last Modified: <b>' + imgInp.lastModifiedDate + '</b> <br />';
+                            'Type: <b>' + imgInp.type + '</b> <br />';
                         return true;
                     }
                 }
