@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using RecipeWebsite.Data;
+using RecipeWebsite.Data.Enum;
 using RecipeWebsite.Interfaces;
 using RecipeWebsite.Models;
 using RecipeWebsite.ViewModels.Post;
@@ -25,28 +27,30 @@ namespace RecipeWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Post> posts = await _postInterface.GetAll();
-            return View(posts);
+            IEnumerable<Post> post = await _postInterface.GetAll();
+            return View(post);
         }
+                
 
-
-        // Search Bar
+        // Filter
         [HttpPost]
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, PostCategory? postCategory)
         {
-            if (_context.Posts == null)
+            var post = from p in _context.Posts select p;
+
+            // Searchbar
+            if (!string.IsNullOrEmpty(searchString))
             {
-                return Problem("No Results Found.");
+                post = post.Where(t => t.Title!.Contains(searchString));
             }
 
-            var posts = from p in _context.Posts select p;
-
-            if (!String.IsNullOrEmpty(searchString))
+            // Category Dropdown
+            if (postCategory != null)
             {
-                posts = posts.Where(s => s.Title!.Contains(searchString));
+                post = _context.Posts.Where(c => c.PostCategory == postCategory);
             }
 
-            return View(await posts.ToListAsync());
+            return View(await post.ToListAsync());
         }
 
 
@@ -63,6 +67,7 @@ namespace RecipeWebsite.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel postVM)
         {

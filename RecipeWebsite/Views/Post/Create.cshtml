@@ -12,105 +12,102 @@
 <form method="post" asp-action="Create" enctype="multipart/form-data" class="needs-validation" novalidate>
 
     <div class="row g-5">
-        
-        <form class="needs-validation" novalidate="">
-            <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 
-                <h4 class="mb-4">Recipe Details</h4>
+            <h4 class="mb-4">Recipe Details</h4>
 
-                <!-- Title -->
-                <div class="col-sm-12 mb-3">
-                    <label asp-for="Title" class="form-label">Recipe Title</label>
-                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Recipe Title is required.
-                    </div>
+            <!-- Title -->
+            <div class="col-sm-12 mb-3">
+                <label asp-for="Title" class="form-label">Recipe Title</label>
+                <input asp-for="Title" type="text" class="form-control" id="title" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Recipe Title is required.
                 </div>
-
-                <!-- Description -->
-                <div class="col-sm-12 mb-3">
-                    <label asp-for="Description" class="form-label">Recipe Description</label>
-                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Recipe Description is required.
-                    </div>
-                </div>
-
-                <!-- Link -->
-                <div class="col-12 mb-3">
-                    <label asp-for="Link" class="form-label">Recipe Link</label>
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">@@</span>
-                        <input asp-for="Link" type="url" class="form-control" id="link" placeholder="https://youtu.be/url">
-                    </div>
-                    <div id="confirmPasswordHelpBlock" class="form-text">
-                        Paste your youtube recipe link here.
-                    </div>
-                </div>
-
-                <!-- Category -->
-                <div class="col-md-12 mb-3">
-                    <label asp-for="PostCategory" class="form-label">Post Category</label>
-                    <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required>
-                        <option value="">Choose a category</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a valid category.
-                    </div>
-                </div>
-
-                <!-- Ingredients -->
-                <div class="col-12 mb-3">
-                    <label asp-for="Ingredient" class="form-label">Ingredients</label>
-                    <textarea asp-for="Ingredient" type="text" class="form-control" id="ingredient" placeholder="ingredients goes here" required rows="5">Ingredients</textarea>
-                    <div class="invalid-feedback">
-                        Ingredients are required.
-                    </div>
-                </div>
-
-                <!-- Recipe -->
-                <div class="col-12 mb-3">
-                    <label asp-for="Recipe" class="form-label">Recipe</label>
-                    <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" value="" required rows="5">Recipe Body</textarea>
-                    <div class="invalid-feedback">
-                        Recipe Body is required.
-                    </div>
-                </div>
-
-                <!-- Image -->
-                <div class="col-12 mb-5">
-                    <label asp-for="Image">Image</label>
-                    <input asp-for="Image" type="file" class="form-control" id="imgInp" onchange="checkFileDetails()" placeholder="Thumbnail" required
-                           oninput="pic.src=window.URL.createObjectURL(this.files[0])">
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                    <div id="imageDimentionBlock" class="form-text">
-                        Image dimentions are 720px weight and 1080px height
-                    </div>
-                    <img id="pic" src="#" alt="your image" class="img-thumbnail rounded" width="270" height="405" />
-                    <div class="invalid-feedback">
-                        Recipe Thumbnail is required.
-                    </div>
-                    <p id="fileInfo"></p>
-                </div>
-
-                <!-- Submit -->
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="submit" class="btn btn-success btn-lg px-4 gap-3">Submit</button>
-                    <button type="reset" class="btn btn-secondary btn-lg px-4">Reset</button>
-                    <a class="btn btn-danger btn-lg px-4" asp-area="" asp-controller="Post" asp-action="Index">Cancel</a>
-                </div>
-
-                <hr class="my-4">
-
-                <!-- T & C -->
-                <small class="text-body-secondary form-text mb-5">® By clicking Post Recipe, you agree to the terms of use.</small>
-
             </div>
-        </form>
+
+            <!-- Description -->
+            <div class="col-sm-12 mb-3">
+                <label asp-for="Description" class="form-label">Recipe Description</label>
+                <input asp-for="Description" type="text" class="form-control" id="description" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Recipe Description is required.
+                </div>
+            </div>
+
+            <!-- Link -->
+            <div class="col-12 mb-3">
+                <label asp-for="Link" class="form-label">Recipe Link</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text">@@</span>
+                    <input asp-for="Link" type="url" class="form-control" id="link" placeholder="https://youtu.be/url">
+                </div>
+                <div id="confirmPasswordHelpBlock" class="form-text">
+                    Paste your youtube recipe link here.
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="col-md-12 mb-3">
+                <label asp-for="PostCategory" class="form-label">Post Category</label>
+                <select asp-for="PostCategory" asp-items="@Html.GetEnumSelectList<PostCategory>()" class="form-control" required>
+                    <option value="">Choose a category</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid category.
+                </div>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="col-12 mb-3">
+                <label asp-for="Ingredient" class="form-label">Ingredients</label>
+                <textarea asp-for="Ingredient" type="text" class="form-control" id="ingredient" placeholder="ingredients goes here" required rows="5">Ingredients</textarea>
+                <div class="invalid-feedback">
+                    Ingredients are required.
+                </div>
+            </div>
+
+            <!-- Recipe -->
+            <div class="col-12 mb-3">
+                <label asp-for="Recipe" class="form-label">Recipe</label>
+                <textarea asp-for="Recipe" type="text" class="form-control" id="recipe" placeholder="recipe goes here" value="" required rows="5">Recipe Body</textarea>
+                <div class="invalid-feedback">
+                    Recipe Body is required.
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="col-12 mb-5">
+                <label asp-for="Image">Image</label>
+                <input asp-for="Image" type="file" class="form-control" id="imgInp" onchange="checkFileDetails()" placeholder="Thumbnail" required
+                        oninput="pic.src=window.URL.createObjectURL(this.files[0])">
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <div id="imageDimentionBlock" class="form-text">
+                    Image dimentions are 720px weight and 1080px height
+                </div>
+                <img id="pic" src="#" alt="your image" class="img-thumbnail rounded" width="270" height="405" />
+                <div class="invalid-feedback">
+                    Recipe Thumbnail is required.
+                </div>
+                <p id="fileInfo"></p>
+            </div>
+
+            <!-- Submit -->
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="submit" class="btn btn-success btn-lg px-4 gap-3">Submit</button>
+                <button type="reset" class="btn btn-secondary btn-lg px-4">Reset</button>
+                <a class="btn btn-danger btn-lg px-4" asp-area="" asp-controller="Post" asp-action="Index">Cancel</a>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- T & C -->
+            <small class="text-body-secondary form-text mb-5">® By clicking Post Recipe, you agree to the terms of use.</small>
+
+        </div>
 
     </div>
 
 </form>
 
-<script src="~/js/recipeImage.js"></script>
-<script src="~/js/validation.js"></script>
+<script src="~/js/created/recipeImage.js"></script>
+<script src="~/js/created/validation.js"></script>

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Post>
+﻿@using RecipeWebsite.Data.Enum;
+
+@model IEnumerable<Post>
 
 <main>
 
@@ -8,31 +10,57 @@
         <h1 class="display-5 fw-bold text-body-emphasis">Posts</h1>
 
         <div class="col-lg-6 mx-auto">
+            <!-- Hero Description -->
             <p class="lead text-body-secondary">Welcome to Posts section! All the posts ever posted on this website appear here. All the posts here are written recipes from my youtube channels.</p>
 
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <!-- Admin Controls -->
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
                 <a asp-controller="Post" asp-action="Create" type="button" class="btn btn-primary btn-lg px-4 gap-3">Create post</a>
                 <a href="#" type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary action</a>
             </div>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off" checked onclick="this.blur();">
+            <label class="btn btn-outline-primary" for="primary-outlined">All</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" onclick="this.blur();">
+            <label class="btn btn-outline-success" for="success-outlined">Veg</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off" onclick="this.blur();">
+            <label class="btn btn-outline-danger" for="danger-outlined">Non Veg</label>
 
         </div>
 
     </div>
 
 
-    <!-- Search bar -->
-    <form class="d-flex w-50 mb-2" role="search" asp-controller="Post" asp-action="Index">
-        <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
-        <button class="btn btn-outline-success me-2" type="submit">Search</button>
-        <a class="btn btn-outline-danger" asp-area="" asp-controller="Post" asp-action="Index">Reset</a>
-    </form>
+    <!-- Filter -->
+    <div class="row justify-content-between">
+        <!-- Search bar -->
+        <div class="col-4">
+            <form class="d-flex mb-2" role="search" asp-controller="Post" asp-action="Index">
+                <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
+                <button class="btn btn-outline-success me-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" asp-area="" asp-controller="Post" asp-action="Index">Reset</a>
+            </form>
+        </div>
+        <!-- Dropdown -->
+        <div class="col-4">
+            <form asp-controller="Post" asp-action="Index" id="category">
+                <select class="form-control" asp-items="@Html.GetEnumSelectList<PostCategory>()" name="postCategory" id="post-filter">
+                    <option value="">All</option>
+                </select>
+                <button class="btn btn-outline-success me-2" type="submit">Search</button>
+                <a class="btn btn-outline-danger" asp-area="" asp-controller="Post" asp-action="Index">Reset</a>
+            </form>
+        </div>
+    </div>
 
 
     <!-- Cards -->
     <div class="album py-5 bg-light">
         <div class="container">
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="post-recipe">
 
                 @foreach (var item in Model)
                 {
