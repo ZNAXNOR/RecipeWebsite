@@ -1,6 +1,7 @@
 ﻿/* Table of contents */
 .bd-aside a {
     padding: .1875rem .5rem;
+    padding-left: 25px;
     margin-top: .125rem;
     margin-left: .3000em;
     color: var(--bs-body-color);

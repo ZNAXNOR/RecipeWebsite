@@ -1,0 +1,29 @@
+﻿<header style="padding-top:70px;" id="header">
+
+    <nav class="navbar navbar-expand navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ps-10 fixed-top">
+        <div class="container-fluid">
+
+            <!--Toggler-->
+            <div class="header_toggle pe-1"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+
+            <!--Website Title-->
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RecipeWebsite</a>
+
+            <!--Options-->
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ps-3">
+
+                <!--Search bar-->
+                <form class="d-flex w-50 me-5" role="search" asp-controller="Searchbar" asp-action="Index">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <div class="invalid-feedback"></div>
+                </form>
+
+                <!--Identity-->
+                <partial name="~/Views/Shared/Navbar/_Identity.cshtml" />
+
+            </div>
+        </div>
+    </nav>
+
+</header>
