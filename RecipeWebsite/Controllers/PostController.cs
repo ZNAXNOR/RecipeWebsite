@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Caching.Memory;
 using RecipeWebsite.Data;
-using RecipeWebsite.Data.Enum;
 using RecipeWebsite.Interfaces;
 using RecipeWebsite.Models;
 using RecipeWebsite.ViewModels.Post;
@@ -14,12 +13,14 @@ namespace RecipeWebsite.Controllers
         private readonly IPostInterface _postInterface;
         private readonly IPhotoInterface _photoInterface;
         private readonly ApplicationDbContext _context;
+        private readonly IMemoryCache _cache;
 
-        public PostController(IPostInterface postInterface, IPhotoInterface photoInterface, ApplicationDbContext context)
+        public PostController(IPostInterface postInterface, IPhotoInterface photoInterface, ApplicationDbContext context, IMemoryCache cache)
         {
             _postInterface = postInterface;
             _photoInterface = photoInterface;
             _context = context;
+            _cache = cache;
         }
 
 
@@ -27,14 +28,18 @@ namespace RecipeWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Post> post = await _postInterface.GetAll();
-            return View(post);
+            var cached = _cache.TryGetValue("post", out var post);
+            if (cached)
+            {
+                return View(post);
+            }
+            return View(await _context.Posts.ToListAsync());
         }
-                
 
-        // Filter
+
+        // Searchbar
         [HttpPost]
-        public async Task<IActionResult> Index(string searchString, PostCategory? postCategory)
+        public async Task<IActionResult> Index(string searchString)
         {
             var post = from p in _context.Posts select p;
 
@@ -42,12 +47,6 @@ namespace RecipeWebsite.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 post = post.Where(t => t.Title!.Contains(searchString));
-            }
-
-            // Category Dropdown
-            if (postCategory != null)
-            {
-                post = _context.Posts.Where(c => c.PostCategory == postCategory);
             }
 
             return View(await post.ToListAsync());

@@ -24,8 +24,10 @@ namespace RecipeWebsite.Controllers
             var posts = from p in _context.Posts select p;
             var collections = from c in _context.Collections select c;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
+                TempData["searchString"] = searchString;
+
                 posts = posts.Where(ps => ps.Title!.Contains(searchString));
                 collections = collections.Where(cs => cs.Title!.Contains(searchString));
             }
@@ -35,6 +37,7 @@ namespace RecipeWebsite.Controllers
                 Posts = await posts.ToListAsync(),
                 Collections = await collections.ToListAsync()
             };
+
 
             return View(searchbarVM);
         }

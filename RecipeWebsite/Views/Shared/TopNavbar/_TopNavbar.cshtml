@@ -1,0 +1,53 @@
+﻿@using RecipeWebsite.Data.Enum;
+
+<header style="padding-top:5px;" id="header">
+
+    <nav class="navbar navbar-expand navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ps-10 fixed-top">
+        <div class="container-fluid">
+
+            <!--Toggler-->
+            <div class="header_toggle ps-2"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+
+            <!--Website Title-->
+            <a class="navbar-brand ps-4" asp-area="" asp-controller="Home" asp-action="Index">RecipeWebsite</a>
+
+            <!--Options-->
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ps-5">
+
+                <!--Search bar-->
+                <form class="d-flex w-50 ps-lg-5" role="search" asp-controller="Searchbar" asp-action="Index">
+                    <div class="input-group">
+                        <input class="form-control" value="@TempData["searchString"]" type="search" placeholder="Search" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
+                        <button class="btn btn-outline-success" type="submit" id="search-button"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+
+                <!-- Dropdown -->
+                <div class="col-4">
+                    <form class="w-75 ps-lg-5" asp-controller="Filter" asp-action="Index" id="category">
+                        <div class="input-group">
+                            <select class="form-control" asp-items="@Html.GetEnumSelectList<PostCategory>()" name="postCategory" id="post-filter" >
+                                <option value="" selected>All</option>
+                                @if(TempData["selectedValue"] == null)
+                                {
+                                    <option selected hidden>All</option>
+                                }
+                                else
+                                {
+                                    var displayValue = TempData["selectedValue"];
+                                    <option selected hidden>@displayValue</option>
+                                }
+                            </select>
+                            <button class="btn btn-outline-success me-2" type="submit">Filter</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Identity-->
+                <partial name="~/Views/Shared/TopNavbar/_Identity.cshtml" />
+
+            </div>
+        </div>
+    </nav>
+
+</header>
