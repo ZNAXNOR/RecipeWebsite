@@ -1,0 +1,20 @@
+﻿.autocomplete-suggestions {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+    .autocomplete-suggestions li {
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+        .autocomplete-suggestions li.selected {
+            background-color: #ccc;
+        }
+
+        

@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeWebsite.Data.Enum
 {
     public enum PostCategory
     {
         [Display(Name = "Veg")]
-        Veg = 0,
+        [Description("Veg")]
+        Veg,
 
         [Display(Name = "NonVeg")]
-        NonVeg = 1
+        [Description("NonVeg")]
+        NonVeg
     }
 }

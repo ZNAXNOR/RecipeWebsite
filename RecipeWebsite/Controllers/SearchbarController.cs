@@ -16,11 +16,6 @@ namespace RecipeWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string searchString)
         {
-            if (_context.Posts == null || _context.Collections == null)
-            {
-                return Problem("Search Result does not exist.");
-            }
-
             var posts = from p in _context.Posts select p;
             var collections = from c in _context.Collections select c;
 
@@ -28,8 +23,8 @@ namespace RecipeWebsite.Controllers
             {
                 TempData["searchString"] = searchString;
 
-                posts = posts.Where(ps => ps.Title!.Contains(searchString));
-                collections = collections.Where(cs => cs.Title!.Contains(searchString));
+                posts = posts.Where(p => p.Title!.Contains(searchString));
+                collections = collections.Where(c => c.Title!.Contains(searchString));
             }
 
             var searchbarVM = new SearchbarViewModel
@@ -37,7 +32,6 @@ namespace RecipeWebsite.Controllers
                 Posts = await posts.ToListAsync(),
                 Collections = await collections.ToListAsync()
             };
-
 
             return View(searchbarVM);
         }

@@ -4,6 +4,7 @@ namespace RecipeWebsite.ViewModels.Post
 {
     public class EditPostViewModel
     {
+        // Post
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -12,6 +13,8 @@ namespace RecipeWebsite.ViewModels.Post
         public string Recipe { get; set; }
         public IFormFile Image { get; set; }
         public string? URL { get; set; }
+
+        // Category
         public PostCategory PostCategory { get; set; }
     }
 }

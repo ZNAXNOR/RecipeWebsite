@@ -11,6 +11,13 @@ namespace RecipeWebsite.ViewModels.Post
         public string? Ingredient { get; set; }
         public string Recipe { get; set; }
         public IFormFile Image { get; set; }
+
+        // Addition
+        //public int View { get; set; }
+        //public bool Like { get; set; }
+        //public bool Dislike { get; set; }
+
+        // Category
         public PostCategory PostCategory { get; set; }
     }
 }

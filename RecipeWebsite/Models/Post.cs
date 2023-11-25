@@ -15,7 +15,13 @@ namespace RecipeWebsite.Models
         public string? Ingredient { get; set; }
         public string Recipe { get; set; }
         public string Image { get; set; }
-        
+
+        // Addition
+        public DateTime Date { get; set; }
+        public int View { get; set; }
+        public int Like { get; set; }
+        public int Dislike { get; set; }
+
         // Category
         public PostCategory PostCategory { get; set; }
 
