@@ -13,8 +13,8 @@
             </div>
             @* Admin privlages *@
             <div class="card-footer btn-group">
-                <a asp-controller="Collection" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-primary stretched-link">Edit</a>
-                <a asp-controller="Collection" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-danger stretched-link">Delete</a>
+                <a asp-controller="Collection" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-primary shadow-none stretched-link"><i class='bx bxs-edit-alt me-2'></i>Edit</a>
+                <a asp-controller="Collection" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-danger shadow-none stretched-link"><i class='bx bxs-trash-alt me-2'></i>Delete</a>
             </div>
         </div>
     </div>

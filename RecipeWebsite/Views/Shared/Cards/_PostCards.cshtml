@@ -8,17 +8,17 @@
                 <a asp-controller="Post" asp-action="Detail" asp-route-id="@item.Id" class="stretched-link"></a>
                 <h6 class="card-text"> @item.Title </h6>
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <small class="text-body-secondary">@item.PostCategory</small>
+                    <p class="small text-secondary">@item.PostCategory</p>
                 </div>
             </div>
             @* Views *@
             <div class="card-footer">
-                <small class="text-body-secondary">@item.View views</small>
+                <p class="small text-secondary mb-1"><i class="bi bi-eye-fill me-2"></i>@item.View views</p>
             </div>
             @* Admin privlages *@
             <div class="card-footer btn-group">
-                <a asp-controller="Post" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-primary stretched-link">Edit</a>
-                <a asp-controller="Post" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-danger stretched-link">Delete</a>
+                <a asp-controller="Post" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-primary shadow-none stretched-link"><i class='bx bxs-edit-alt me-2'></i>Edit</a>
+                <a asp-controller="Post" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-danger shadow-none stretched-link"><i class='bx bxs-trash-alt me-2'></i>Delete</a>
             </div>
         </div>
     </div>

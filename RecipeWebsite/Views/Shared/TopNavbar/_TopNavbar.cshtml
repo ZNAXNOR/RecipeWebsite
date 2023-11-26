@@ -17,9 +17,9 @@
                 <!--Search bar-->
                 <form class="d-flex w-50 ps-lg-5" role="search" asp-controller="Searchbar" asp-action="Index">
                     <div class="input-group">
-                        <input class="form-control" value="@TempData["searchString"]" type="search" placeholder="Search" id="text-suggestion" aria-label="Search" name="SearchString"
+                        <input class="form-control shadow-none" value="@TempData["searchString"]" type="search" placeholder="Search" id="text-suggestion" aria-label="Search" name="SearchString"
                         required oninvalid="this.setCustomValidity(' ')"/>
-                        <button class="btn btn-outline-success" type="submit" id="search-button"><i class='bx bx-search'></i></button>
+                        <button class="btn btn-outline-success shadow-none" type="submit" id="search-button"><i class='bx bx-search'></i></button>
                     </div>
                 </form>
 
@@ -27,14 +27,14 @@
                 <div class="col-4">
                     <form class="w-75 ps-lg-5" asp-controller="Filter" asp-action="Index" id="category">
                         <div class="input-group">
-                            <select class="form-control" name="postCategory" id="post-filter">
+                            <select class="form-control shadow-none" name="postCategory" id="post-filter">
                                 <option>All</option>
                                 @foreach (var value in Enum.GetValues(typeof(PostCategory)))
                                 {
                                     <!option value="@value" @(value.ToString() == ViewBag.PostCategory?.ToString() ? "selected" : "")>@value</!option>
                                 }
                             </select>
-                            <button class="btn btn-outline-success me-2" type="submit">Filter</button>
+                            <button class="btn btn-outline-success shadow-none me-2" type="submit">Filter</button>
                         </div>
                     </form>
                 </div>

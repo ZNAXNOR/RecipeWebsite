@@ -1,31 +1,36 @@
 ﻿@model Collection
 
 <!-- Page Content -->
+<main>
 
-<div class="container">
-
-    <!-- Item Heading -->
-    <h1 class="my-4">
-        @Model.Title
-    </h1>
-
-    <!-- Item Description -->
-    <div class="row">
-      <div class="col-md-8">
-        <img class="img-fluid" src="@Model.Image" alt="">
-      </div>
-
-      <div class="col-md-4">
-        <h3 class="my-3">@Model.Title</h3>
-        <p>@Model.Description</p>
-
-        <h3 class="my-3">Recipe Category</h3>
-        <ul>
-            <li>Category 1</li>
-            <li>Category 2</li>
-            <li>Category 3</li>
-        </ul>
-      </div>
+    <div class="container col-xxl-8 px-4 py-5 border-bottom mb-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="@Model.Image" class="d-block mx-lg-auto img-fluid" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-4">@Model.Title</h1>
+                <p class="lead fst-italic">@Model.Description</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="#" type="button" class="btn btn-primary btn-lg px-4"><i class='bx bxs-message-square-add bx-flip-horizontal'></i> Add to Collection </a>
+                    <a asp-controller="Collection" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-outline-secondary btn-lg px-4 me-md-2"><i class='bx bxs-edit-alt'></i> Edit collection </a>
+                </div>
+            </div>
+        </div>
     </div>
-    
-</div>
+
+
+    @* Cards *@
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="category-recipe">
+
+                @* <partial name="~/Views/Shared/Cards/_CollectionCards.cshtml" /> *@
+
+            </div>
+
+        </div>
+    </div>
+
+</main>

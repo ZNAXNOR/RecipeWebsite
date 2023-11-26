@@ -2,7 +2,7 @@
 
 <main>
 
-    @* Hero *@
+    <!-- Hero -->
     <div class="px-4 py-5 my-5 text-center">
 
         <h1 class="display-5 fw-bold text-body-emphasis">Collections</h1>
@@ -11,7 +11,7 @@
             <p class="lead text-body-secondary">Welcome to Collections section! All the collections ever posted on this website appear here. All the collections here are collections from my youtube channels.</p>
 
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a asp-controller="Collection" asp-action="Create" type="button" class="btn btn-primary btn-lg px-4 gap-3">Create collection</a>
+                <a asp-controller="Collection" asp-action="Create" type="button" class="btn btn-primary btn-lg px-4 gap-3"><i class='bx bxs-book-add bx-flip-horizontal me-2'></i>Create collection</a>
                 <a href="#" type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary action</a>
             </div>
 
@@ -20,15 +20,20 @@
     </div>
 
 
-    @* Search bar *@
-    <form class="d-flex w-50 mb-2" role="search" asp-controller="Collection" asp-action="Index">
-        <input class="form-control me-2" type="search" placeholder="Search Collections" aria-label="Search" name="SearchString" required oninvalid="this.setCustomValidity(' ')" />
-        <button class="btn btn-outline-success me-2" type="submit">Search</button>
-        <a class="btn btn-outline-danger" asp-area="" asp-controller="Collection" asp-action="Index">Reset</a>
-    </form>
+    <!-- Search bar -->
+    <div class="row justify-content-between">
+        <form class="d-flex w-50 mb-2" role="search" asp-controller="Collection" asp-action="Index">
+            <div class="input-group pe-2">
+                <input class="form-control shadow-none" value="@TempData["searchString"]" type="search" placeholder="Search Collections" id="text-suggestion" aria-label="Search" name="SearchString"
+                       required oninvalid="this.setCustomValidity(' ')" />
+                <button class="btn btn-outline-success shadow-none" type="submit" id="search-button"><i class='bx bx-search'></i></button>
+            </div>
+            <a class="btn btn-outline-danger w-25" asp-area="" asp-controller="Collection" asp-action="Index"><i class='bx bx-reset'></i>Reset</a>
+        </form>
+    </div>
 
 
-    @* Cards *@
+    <!-- Cards -->
     <div class="album py-5 bg-light">
         <div class="container">
 

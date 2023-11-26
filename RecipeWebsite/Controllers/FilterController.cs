@@ -24,12 +24,6 @@ namespace RecipeWebsite.Controllers
 
             if (postCategory != null)
             {
-                //HttpContext.Session("selectedValue") = postCategory;
-                //Session["selectedValue"] = postCategory;
-                //TempData["selectedValue"] = postCategory;
-                //TempData.Keep();
-                //ViewData["Selected"] = postCategory;
-
                 post = _context.Posts.Where(c => c.PostCategory == postCategory).ToList();
             }
             else
@@ -40,7 +34,9 @@ namespace RecipeWebsite.Controllers
             _cache.Set("post", post);
             ViewBag.PostCategory = postCategory;
 
-            return View("~/Views/Home/Index.cshtml");
+            string url = Request.Headers["Referer"].ToString();
+
+            return Redirect(url);
         }
     }
 }

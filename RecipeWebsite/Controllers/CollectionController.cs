@@ -33,20 +33,13 @@ namespace RecipeWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string searchString)
         {
-            if (_context.Collections == null)
-            {
-                return Problem("No Results Found.");
-            }
-
             var collections = from c in _context.Collections select c;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
+                TempData["searchString"] = searchString;
+
                 collections = collections.Where(s => s.Title!.Contains(searchString));
-            }
-            else
-            {
-                Console.Write("Search string cannot be empty");
             }
 
             return View(await collections.ToListAsync());

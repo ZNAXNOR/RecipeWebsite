@@ -80,18 +80,21 @@
                         <!-- Recipe Details -->
                         <div class="col-md-4">
 
-                            <!-- Date Uploaded -->
-                            <p class="h6 fw-bold pt-lg-5">Date uploaded: <br />@Model.Date.ToString("dd/MM/yyyy")</p>
-
-                            <!-- Views -->
-                            <p class="h6 fw-bold pt-lg-5">Views: @Model.View</p>
-
-                            <!-- Upvotes/Downvotes -->
                             @{
+                                var upload_date = @Model.Date.ToString("dd/MM/yyyy");
+                                var views = Model.View;
                                 var likes = Model.Like;
                                 var dislikes = Model.Dislike;
                                 var votes = likes + dislikes;
                             }
+
+                            <!-- Date Uploaded -->
+                            <p class="h6 fw-bold pt-lg-5">Date uploaded: <br />@upload_date</p>
+
+                            <!-- Views -->
+                            <p class="h6 fw-bold pt-lg-5">Views: @views</p>
+
+                            <!-- Upvotes/Downvotes -->
                             <p class="h6 fw-bold pt-lg-5">Votes: @votes </p>
                             <div class="btn-group" role="group" id="UserVotes" pt-1">
                                 <!-- Like -->

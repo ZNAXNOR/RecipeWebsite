@@ -15,7 +15,7 @@
 
             <!-- Admin Controls -->
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
-                <a asp-controller="Post" asp-action="Create" type="button" class="btn btn-primary btn-lg px-4 gap-3">Create post</a>
+                <a asp-controller="Post" asp-action="Create" type="button" class="btn btn-primary btn-lg px-4 gap-3"><i class='bx bxs-add-to-queue bx-rotate-270 me-1' ></i>Create post</a>
                 <a href="#" type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary action</a>
             </div>
 
@@ -28,11 +28,11 @@
     <div class="row justify-content-between">
         <form class="d-flex w-50 mb-2" role="search" asp-controller="Post" asp-action="Index">
             <div class="input-group pe-2">
-                <input class="form-control" value="@TempData["searchString"]" type="search" placeholder="Search" id="text-suggestion" aria-label="Search" name="SearchString"
+                <input class="form-control shadow-none" value="@TempData["searchString"]" type="search" placeholder="Search Posts" id="text-suggestion" aria-label="Search" name="SearchString"
                        required oninvalid="this.setCustomValidity(' ')" />
-                <button class="btn btn-outline-success" type="submit" id="search-button"><i class='bx bx-search'></i></button>
+                <button class="btn btn-outline-success shadow-none" type="submit" id="search-button"><i class='bx bx-search'></i></button>
             </div>
-            <a class="btn btn-outline-danger" asp-area="" asp-controller="Post" asp-action="Index">Reset</a>
+            <a class="btn btn-outline-danger w-25" asp-area="" asp-controller="Post" asp-action="Index"><i class='bx bx-reset'></i>Reset</a>
         </form>
     </div>
 
